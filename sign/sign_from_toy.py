@@ -8,7 +8,7 @@ import ROOT
 #per dr bhabha e vertice assunto piatto
 
 def signal_yield_all_n(signal_th1, total_tm, cut):
-  return signal_th1.Integral(int(1+cut/100), signal_th1.GetNbinsX())/8318 * total_tm #binw 100um #8318 integral of all th2 histogram without cuts
+  return signal_th1.Integral(int(1+cut/100), signal_th1.GetNbinsX())/8329 * total_tm #binw 100um #8318 integral of all th2 histogram without cuts
 
 def bhabha_yield(bhabha_f, total_bhabha, cut):
   return bhabha_f.Integral(cut/1000, 10)*total_bhabha
@@ -45,7 +45,7 @@ if __name__ == "__main__":
 
   cut_array = np.arange(pars.mincut, pars.vertex_x_acc, 500)
 
-  signalth1file = ROOT.TFile("drsignal_v7-40.root")
+  signalth1file = ROOT.TFile("../reco/signal_dr_v3-40_th1.root")
   signalth1, bhabha_f = signalth1file.Get("h"), ROOT.TF1("f", "gaus", 0, 10)
   bhabha_f.SetParameters(5.49763e+04/1.199e6, 2.35540e+00, 4.54693e-01)
 
