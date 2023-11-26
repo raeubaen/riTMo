@@ -3,6 +3,7 @@ from skspatial.objects import Cylinder, Line, LineSegment
 import pars
 import uproot
 from tqdm import tqdm
+import sys
 
 # si fitta poi il vertice con breit_wigner + gaussiana
 '''
@@ -146,3 +147,6 @@ def run(filename, n, outfile):
   f = uproot.recreate(outfile)
   f["tree"] = {"v": vl, "dx": dxl, "dr": drl, "cda": cdal, "e_mom": e_mom, "e_comp": e_comp, "p_mom": p_mom, "p_comp": p_comp, "w": w, "v_comp": v_comp}
   f.close()
+
+if __name__ == "__main__":
+  run(sys.argv[1], int(sys.argv[2]), sys.argv[3])

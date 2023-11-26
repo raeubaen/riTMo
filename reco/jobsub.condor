@@ -1,0 +1,8 @@
+executable            = job.sh
+arguments             = $(ProcId)
+input                 = input
+output                = output.$(ProcId).out
+error                 = error.$(ProcId).err
+log                   = log.$(ClusterId).log
+requirements          = (OpSysAndVer =?= "AlmaLinux9")
+queue 1
