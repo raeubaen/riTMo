@@ -1,24 +1,9 @@
 #!/bin/bash
-mkdir -p /eos/user/r/rgargiul/www/babatm/$1
-cd /eos/user/r/rgargiul/www/babatm/$1
-/afs/cern.ch/work/r/rgargiul/BabaYaga/babayaga << eof
-ecms 0.211
-thmin 60.
-thmax 120.
-zmax 180.
-emin 0.09
-nphot 0
-nev 10000000
-path run
-ntuple yes
-eps 0.01
-sprb1 0.00021
-sprb2 0.00021
-run
-eof
-
 source /afs/cern.ch/work/r/rgargiul/gpuenv/bin/activate
 
-echo 0
-
-/afs/cern.ch/work/r/rgargiul/gpuenv/bin/python3 /afs/cern.ch/work/r/rgargiul/ritmo/gen/process_babayaga.py $1
+for i in $(seq 1 4); do
+  mkdir -p /eos/user/r/rgargiul/www/babatm/$1_$i
+  cd /eos/user/r/rgargiul/www/babatm/$1_$i
+  /afs/cern.ch/work/r/rgargiul/ritmo/gen/run_babayaga.sh $i
+  /afs/cern.ch/work/r/rgargiul/gpuenv/bin/python3.9 /afs/cern.ch/work/r/rgargiul/ritmo/gen/process_babayaga.py $1 $i
+done

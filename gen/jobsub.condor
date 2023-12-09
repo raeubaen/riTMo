@@ -4,4 +4,6 @@ input                 = input
 output                = output.$(ProcId).out
 error                 = error.$(ProcId).err
 log                   = log.$(ClusterId).log
-queue 1
+requirements          = (OpSysAndVer =?= "AlmaLinux9")
++JobFlavour = "longlunch"
+queue 2000
