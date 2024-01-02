@@ -85,7 +85,7 @@ def get_e_p_intersections(cylinder, e_start, e_dir, p_start, p_dir):
       if p_seg.contains_point(p): p_int = smear(p)
     return (e_int, p_int)
 
-def run(e_comp, e_mom, p_comp, p_mom, theta_ep, w, v_comp, outfile):
+def run(e_comp, e_mom, p_comp, p_mom, theta_ep, w, v_comp, outfile, savefile=True):
   n = len(w)
   vl = []
   drl = []
@@ -130,6 +130,8 @@ def run(e_comp, e_mom, p_comp, p_mom, theta_ep, w, v_comp, outfile):
       vl.append(-99)
       drl.append(-99)
 
-  f = uproot.recreate(outfile)
-  f["tree"] = {"v": vl, "dr": drl, "w": w, "theta_ep": theta_ep}
-  f.close()
+  if savefile:
+    f = uproot.recreate(outfile)
+    f["tree"] = {"v": vl, "dr": drl, "w": w, "theta_ep": theta_ep}
+    f.close()
+  return {"v": vl, "dr": drl, "w": w, "theta_ep": theta_ep}
