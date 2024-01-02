@@ -6,6 +6,7 @@ import os
 import pylorentz
 import silicon_reco_fromarrays as silicon_reco
 import sys
+import pars
 
 try:
   proc_id = sys.argv[1]
@@ -41,11 +42,15 @@ try:
   #silicon_reco.run(e_comp, e_mom, p_comp,p_mom, w, v_comp, outfile)
   '''
 
+  v_comp = np.zeros((len(weights), 3))
+  v_comp[:, 0] = np.random.normal(0, pars.x_ip_sigma, size=len(weights))
+  v_comp[:, 2] = np.random.normal(0, pars.z_ip_sigma. size=len(weights))
+
   silicon_reco.run(
     ele[:, 1:], np.sqrt(ele[:, 0]**2 - (0.511e-3)**2),
     pos[:, 1:], np.sqrt(pos[:, 0]**2 - (0.511e-3)**2),
     np.arccos((ele[:, 1]*pos[:, 1] + ele[:, 2]*pos[:, 2] + ele[:, 3]*pos[:, 3])/(ele[:, 0]*pos[:,0])),
-    weights, np.zeros((len(weights), 3)), f"{workfolder}/bhabha_reco_{proc_id}_{n_phot}.root"
+    weights, v_comp, f"{workfolder}/bhabha_reco_{proc_id}_{n_phot}.root"
   )
 
 except Exception as e:
