@@ -1,20 +1,24 @@
 #!/bin/bash
+
+njob=$(expr $1 + 4000)
+
 source /afs/cern.ch/work/r/rgargiul/gpuenv/bin/activate
 
 for i in $(seq 1 4); do
- if [ -d /eos/user/r/rgargiul/www/babatm/$1_$i ]; then
+ if [ -d /eos/user/r/rgargiul/www/babatm/"$njob"_$i ]; then
     echo folder exist
-    /afs/cern.ch/work/r/rgargiul/gpuenv/bin/python3.9 /afs/cern.ch/work/r/rgargiul/ritmo/gen/process_babayaga.py $1 $i
+    echo /eos/user/r/rgargiul/www/babatm/"$njob"_$i
+    /afs/cern.ch/work/r/rgargiul/gpuenv/bin/python3.9 /afs/cern.ch/work/r/rgargiul/ritmo/gen/process_babayaga.py "$njob" $i
   fi
 
-  if [ ! -d /eos/user/r/rgargiul/www/babatm/$1_$i ]; then
+  if [ ! -d /eos/user/r/rgargiul/www/babatm/"$njob"_$i ]; then
     echo folder not exist
-    if [ ! -f /eos/user/r/rgargiul/www/babatm/bhabha_reco_$1_$i.root ]; then
+    if [ ! -f /eos/user/r/rgargiul/www/babatm/bhabha_reco_"$njob"_$i.root ]; then
       echo file not exist
-      mkdir -p /eos/user/r/rgargiul/www/babatm/$1_$i
-      cd /eos/user/r/rgargiul/www/babatm/$1_$i
+      mkdir -p /eos/user/r/rgargiul/www/babatm/"$njob"_$i
+      cd /eos/user/r/rgargiul/www/babatm/"$njob"_$i
       /afs/cern.ch/work/r/rgargiul/ritmo/gen/run_babayaga.sh $i
-      /afs/cern.ch/work/r/rgargiul/gpuenv/bin/python3.9 /afs/cern.ch/work/r/rgargiul/ritmo/gen/process_babayaga.py $1 $i
+      /afs/cern.ch/work/r/rgargiul/gpuenv/bin/python3.9 /afs/cern.ch/work/r/rgargiul/ritmo/gen/process_babayaga.py "$njob" $i
     fi
   fi
 done

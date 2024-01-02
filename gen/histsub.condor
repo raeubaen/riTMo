@@ -1,0 +1,9 @@
+executable            = hist.sh
+arguments             = $(ProcId)
+input                 = input
+output                = output.$(ProcId).out
+error                 = error.$(ProcId).err
+log                   = log.$(ClusterId).log
+requirements = (OpSysAndVer =?= "CentOS7")
++JobFlavour = "espresso"
+queue 100
