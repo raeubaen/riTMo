@@ -1,0 +1,8 @@
+mkdir: cannot create directory ‘/eos/user’: Transport endpoint is not connected
+condor_exec.exe: line 19: cd: /eos/user/r/rgargiul/www/babatm/2_1: Transport endpoint is not connected
+mkdir: cannot create directory ‘/eos/user’: Transport endpoint is not connected
+condor_exec.exe: line 19: cd: /eos/user/r/rgargiul/www/babatm/2_2: Transport endpoint is not connected
+mkdir: cannot create directory ‘/eos/user’: Transport endpoint is not connected
+condor_exec.exe: line 19: cd: /eos/user/r/rgargiul/www/babatm/2_3: Transport endpoint is not connected
+mkdir: cannot create directory ‘/eos/user’: Transport endpoint is not connected
+condor_exec.exe: line 19: cd: /eos/user/r/rgargiul/www/babatm/2_4: Transport endpoint is not connected
