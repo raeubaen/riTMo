@@ -1,6 +1,6 @@
 #!/bin/bash
 
-njob=$(expr $1 + 4000)
+njob=$(expr $1 + 0)
 
 source /afs/cern.ch/work/r/rgargiul/gpuenv/bin/activate
 

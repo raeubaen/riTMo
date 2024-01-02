@@ -44,7 +44,7 @@ try:
 
   v_comp = np.zeros((len(weights), 3))
   v_comp[:, 0] = np.random.normal(0, pars.x_ip_sigma, size=len(weights))
-  v_comp[:, 2] = np.random.normal(0, pars.z_ip_sigma. size=len(weights))
+  v_comp[:, 2] = np.random.normal(0, pars.z_ip_sigma, size=len(weights))
 
   silicon_reco.run(
     ele[:, 1:], np.sqrt(ele[:, 0]**2 - (0.511e-3)**2),
